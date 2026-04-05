@@ -18,9 +18,10 @@ form.addEventListener('submit', (e) => {
     const prioridadElemento = document.querySelector('input[name="prioridad"]:checked');
     const prioridad = prioridadElemento ? prioridadElemento.value : "";
 
+    
     // 3. Validación
     mensajeError.innerText = ""; // Limpiamos errores previos
-
+    
     if (nombre.length < 3) {
         mensajeError.innerText = "El nombre debe tener al menos 3 caracteres.";
         return; // Detiene la función aquí si hay error
@@ -29,7 +30,7 @@ form.addEventListener('submit', (e) => {
         mensajeError.innerText = "El nombre debe tener como máximo 20 caracteres letras.";
         return; 
     };
-
+    
     if (categoria === "") {
         mensajeError.innerText = "Selecciona una categoría.";
         return;
@@ -38,16 +39,65 @@ form.addEventListener('submit', (e) => {
         mensajeError.innerText = "Debes aceptar las condiciones.";
         return;
     };
-
+    
     // 4. Si todo está bien, mostramos el mensaje de éxito
     resultado.innerHTML = `
-        <p id="mensaje-exito">✅ Proyecto "${nombre}" registrado con éxito.</p>
-        <ul>
-            <li>Categoría: ${categoria}</li>
-            <li>Prioridad: ${prioridad}</li>
-        </ul>
+    <p id="mensaje-exito">✅ Proyecto <strong>"${nombre}"</strong> registrado con éxito.</p>
+    <ul>
+    <li>Categoría: ${categoria}</li>
+    <li>Prioridad: ${prioridad}</li>
+    </ul>
     `;
+
+    // C.2.
+    const cardProyecto = document.createElement('div');
+    cardProyecto.className = 'proyecto-item'; // Para poder darle estilos con css
+    
+    
+    // B.3. La lógica del experimento
+    // Metemos la info (usando Template Literals)
+    cardProyecto.innerHTML = `
+    <div class="proyecto-item--datos">
+    <p class="capitalize"><strong>${nombre}</strong></p>
+    <p class="capitalize">${categoria}</p>
+    <p class="capitalize">${prioridad}</p>
+    </div>
+    <button class="btn-borrar">🗑️</button>
+    `;
+    
+    // Reto: Implementa la creación de estas "cards" y haz que, si el proyecto tiene prioridad "alta", la card tenga un borde rojo grueso.
+    if (prioridad === "Alta") {
+        cardProyecto.classList.add("prioridad-alta");
+        console.log(prioridad)
+    };
+    if (prioridad === "Baja") {
+        cardProyecto.classList.add("prioridad-baja");
+        console.log(prioridad)
+    };
+    
+    // creamos el botón de borrar
+    const botonBorrar = cardProyecto.querySelector('.btn-borrar');
+    botonBorrar.onclick = function() {
+        cardProyecto.remove(); // Se borra el elemento
+    };
+    console.log(listadoProyectos.length)
+    // C. incluimos el proyecto en la lista
+    document.getElementById('items-lista').appendChild(cardProyecto);
+    
+
+    // incluimos el proyecto en la lista
+    document.getElementById('lista-proyectos-dinamica').appendChild(cardProyecto);
+    if (nombre !== "" && categoria !== "" && prioridad !== "") {
+        listadoProyectos.push({
+            nombrePryct: nombre,
+            categoriaPryct: categoria,
+            prioridadPryct: prioridad
+        });
+    };
+    console.log(`Proyecto nuevo añadido. Tienes ${listadoProyectos.length} proyectos guardados.`);
+
     form.reset(); // Limpia todo el formulario de golpe
+    document.getElementById('numero-caracteres').innerText = "0"; // Para que no se quede con el número del proyecto anterior
 });
 
 // Reto: Mientras el usuario escribe en el campo 'nombre', se cuenten los caracteres en tiempo real debajo del input.
@@ -71,8 +121,28 @@ inputNombre.addEventListener('input', () => {
     };
 });
 
+// B
+// B.2. Referencias a los elementos del HTML
+// creamos el contenedor del proyecto (div)
 
 
+
+
+// C
+// 1. Creamos un Array a modo base de datos de nuestras frases (impulsos)
+const listadoProyectos = [
+    {nombrePryct: 'Cafetería "Punto4"', categoriaPryct: "Desarrollo Web", prioridadPryct: "alta"}
+]
+// 2. Referencias a los elementos del HTML
+
+// 3. La lógica del experimento
+
+
+
+
+console.log(listadoProyectos)
+
+/*  A   B   C   */
 
 // X
 // 1. Creamos un Array a modo base de datos de nuestras frases (impulsos)

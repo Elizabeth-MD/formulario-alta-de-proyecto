@@ -19,28 +19,35 @@
 
             <select id="categoria" class="bordeYsombra borde-radius">
                 <option value="">Selecciona categoría...</option>
-                <option value="web">Desarrollo Web</option>
-                <option value="design">Diseño UI/UX</option>
-                <option value="app">Aplicación Móvil</option>
+                <option value="Desarrollo Web">Desarrollo Web</option>
+                <option value="Diseño UI/UX">Diseño UI/UX</option>
+                <option value="Aplicación Movil">Aplicación Móvil</option>
             </select>
 
             <div class="radio-group" class="bordeYsombra borde-radius">
                 <p>Prioridad:</p>
-                <input type="radio" name="prioridad" value="alta" id="p-alta"> <label for="p-alta">Alta</label>
-                <input type="radio" name="prioridad" value="baja" id="p-baja" checked> <label for="p-baja">Baja</label>
+                <input type="radio" name="prioridad" value="Alta" id="p-alta"> <label for="p-alta">Alta</label>
+                <input type="radio" name="prioridad" value="Baja" id="p-baja" checked> <label for="p-baja">Baja</label>
             </div>
 
             <div class="check-group" class="bordeYsombra borde-radius">
                 <p>Condiciones:</p>
+                <p>Revisaré los planes de este proyecto de aquí a 7 días.</p>
                 <input type="checkbox" id="terminos">
                 <label for="terminos">Acepto las condiciones</label>
             </div>
 
             <button type="submit" id="btn-enviar" class="bordeYsombra">REGISTRAR</button>
         </form>
-
+        
         <div id="mensaje-error"></div>
         <div id="resultado-registro"></div>
+    </div>
+    <div id="lista-proyectos-dinamica" class="bordeYsombra">
+        <h2>Lista de proyectos</h2>
+        <div id="items-lista">
+            
+        </div>
     </div>
 </body>
 </html>
